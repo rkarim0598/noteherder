@@ -1,0 +1,40 @@
+Arguments: 
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add --exact react react-dom react-scripts --cwd /home/rayyan/xtbc/noteherder
+
+PATH: 
+  /home/rayyan/.rbenv/plugins/ruby-build/bin:/home/rayyan/.rbenv/shims:/home/rayyan/.rbenv/bin:/home/rayyan/anaconda3/bin:/home/rayyan/bin:/home/rayyan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  10.1.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/eslint/-/eslint-4.10.0.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/usr/share/yarn/lib/cli.js:133786:19)
+      at Object.onceWrapper (events.js:273:13)
+      at ClientRequest.emit (events.js:182:13)
+      at TLSSocket.emitTimeout (_http_client.js:698:34)
+      at Object.onceWrapper (events.js:273:13)
+      at TLSSocket.emit (events.js:182:13)
+      at TLSSocket.Socket._onTimeout (net.js:447:8)
+      at ontimeout (timers.js:427:11)
+      at tryOnTimeout (timers.js:289:5)
+      at listOnTimeout (timers.js:252:5)
+
+npm manifest: 
+  {
+    "name": "noteherder",
+    "version": "0.1.0",
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
