@@ -53,6 +53,7 @@ class NoteList extends Component {
     }
 }
 
+
 const styles = {
     noteList: {
         borderLeft: '1px solid #eee',
