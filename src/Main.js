@@ -8,19 +8,8 @@ class Main extends Component {
     constructor() {
         super()
         this.state = {
-            currentNote: this.blankNote,
-            notes: [
-                {
-                    id: 1,
-                    title: 'JS thoughts',
-                    body: 'I just love JS so much.',
-                },
-                {
-                    id: 2,
-                    title: 'Breakfast',
-                    body: 'FOR IT!',
-                },
-            ],
+            currentNote: this.blankNote(),
+            notes: [],
         }
     }
 
@@ -28,12 +17,12 @@ class Main extends Component {
         return {
             id: null,
             title: '',
-            body: ''
+            body: '',
         }
     }
 
     setCurrentNote = (note) => {
-        this.setState({currentNote: note})
+        this.setState({ currentNote: note })
     }
 
     resetCurrentNote = () => {
@@ -43,11 +32,14 @@ class Main extends Component {
     saveNote = (note) => {
         const notes = [...this.state.notes]
 
-        const i = notes.findIndex(currentNote => currentNote.id === note.id)
-        notes[i] = note
-
-        this.setState({ notes })
-        this.setCurrentNote(note)
+        if (note.id) {
+            const i = notes.findIndex(currentNote => currentNote.id === note.id)
+            notes[i] = note
+        } else {
+            note.id = Date.now()
+            notes.push(note)
+        }
+        this.setState({ notes, currentNote: note })
     }
 
     render() {
@@ -56,11 +48,15 @@ class Main extends Component {
                 className="Main"
                 style={style}
             >
-                <Sidebar resetCurrentNote={this.resetCurrentNote}/>
-                <NoteList notes={this.state.notes}
-                          saveNote={this.setCurrentNote}
+                <Sidebar resetCurrentNote={this.resetCurrentNote} />
+                <NoteList
+                    notes={this.state.notes}
+                    setCurrentNote={this.setCurrentNote}
                 />
-                <NoteForm currentNote={this.state.currentNote}/>
+                <NoteForm
+                    currentNote={this.state.currentNote}
+                    saveNote={this.saveNote}
+                />
             </div>
         )
     }
