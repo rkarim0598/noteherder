@@ -1,32 +1,35 @@
 import React from 'react'
 
-const NoteForm = () => {
-    return (
-        <div className="NoteForm" style={styles.noteForm}>
-          <div className="form-actions" style={styles.formActions}>
-            <button type="button" style={{...styles.button, ...styles.buttonSubmit}}>
-              <i className="fa fa-trash-o" style={styles.buttonIcon}></i>
-            </button>
-          </div>
-          <form style={styles.form}>
-            <p>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title your note"
-                style={styles.inputTitle}
-              />
-            </p>
-            
-            <textarea name="body" styles={styles.textArea}></textarea>
+class NoteForm extends React.Component {
+    render() {
+        return (
+            <div className="NoteForm" style={styles.noteForm}>
+                <div className="form-actions" style={styles.formActions}>
+                    <button type="button" style={styles.button}>
+                        <i className="fa fa-trash-o" style={styles.buttonIcon}></i>
+                    </button>
+                </div>
+                <form style={styles.form}>
+                    <p>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="Title your note"
+                            style={styles.inputTitle}
+                            value={this.props.texty.titulo}
+                        />
+                    </p>
+
+                    <textarea name="body" style={styles.textArea} value={this.props.texty.nota} ></textarea>
           </form>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 const styles = {
     noteForm: {
-        msFlexPositive: '1',
+        // msFlexPositive: '1',
         flexGrow: '1',
         padding: '0 3rem'
     },
@@ -34,7 +37,7 @@ const styles = {
         paddingTop: '1rem',
         marginLeft: '-2rem',
         display: 'flex',
-        mxFlexLinePack: 'center',
+        // mxFlexLinePack: 'center',
         alignContent: 'center'
     },
     button: {
@@ -61,14 +64,14 @@ const styles = {
     inputTitle: {
         border: 'none',
         fontSize: '200%',
-        fontFamily: '"Fauno One"',
+        fontFamily: '"Fauna One"',
         color: '#008bf8',
         fontWeight: '400',
         width: '100%',
         outline: 'none'
     },
     textArea: {
-        borderColor: '#eee',
+        borderColor: '#a676f7',
         width: '100%',
         height: 'calc(100vh - 140px)',
         fontSize: '1.3em'

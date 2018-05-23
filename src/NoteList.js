@@ -1,52 +1,52 @@
 import React, { Component } from 'react'
 
 class NoteList extends Component {
-    constructor() {
-        super()
-        this.state = {
-            titles: ['Kohlrabi welsh', 'Dandelion cucumber', 'Prairie turnip'],
-            notes: ['Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.',
-                'Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.',
-                'Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.'
-            ]
-        }
-    }
+    // constructor() {
+    //     super()
+    //     this.state = {
+    //         titles: ['Kohlrabi welsh', 'Dandelion cucumber', 'Prairie turnip'],
+    //         notes: ['Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.',
+    //             'Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.',
+    //             'Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.'
+    //         ]
+    //     }
+    // }
 
     render() {
         return (
             <div className="NoteList" style={styles.noteList}>
                 <h3 style={styles.h3}>Notes</h3>
                 <ul id="notes" style={styles.ulNotes}>
-                    <a className="active" style={styles.ulA}>
-                        <li style={styles.ulLi}>
-                            <div class="note" style={styles.note}>
-                                <div class="note-title" style={styles.noteTitle}>
-                                    {this.state.titles[0]}
+                    <a className="active" style={styles.ulA} >
+                        <li style={styles.ulLi} onClick={this.props.onClick}>
+                            <div className="note" style={styles.note}>
+                                <div className="note-title" style={styles.noteTitle}>
+                                    {this.props.texty.titles[0]}
                                 </div>
-                                <div class="note-body" style={styles.noteBody}>
+                                <div className="note-body" style={styles.noteBody}>
                                     <p>
-                                        {this.state.notes[0]}
+                                        {this.props.texty.notes[0]}
                                     </p>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a style={styles.ulA}>
-                        {this.state.titles.slice(1).map(title =>
-                            <li style={styles.ulLi}>
+                    {this.props.texty.titles.slice(1).map(title =>
+                        <a style={styles.ulA} >
+                            <li style={styles.ulLi} onClick={this.props.onClick}>
                                 <div className="note" style={styles.note}>
                                     <div className="note-title" style={styles.noteTitle}>
                                         {title}
                                     </div>
                                     <div className="note-body" style={styles.noteBody}>
                                         <p>
-                                            {this.state.notes[this.state.titles.indexOf(title)]}
+                                            {this.props.texty.notes[this.props.texty.titles.indexOf(title)]}
                                         </p>
                                     </div>
                                 </div>
                             </li>
-                        )}
-                    </a>
+                        </a>
+                    )}
                 </ul>
             </div>
         )
@@ -89,8 +89,8 @@ const styles = {
         overflow: 'hidden'
     },
     ulNotesA: {
-        webkitTransition: 'background-color .1s ease-in-out, color .1s ease-in-out',
-        oTransition: 'background-color .1s ease-in-out, color .1s',
+        WebkitTransition: 'background-color .1s ease-in-out, color .1s ease-in-out',
+        OTransition: 'background-color .1s ease-in-out, color .1s',
         transition: 'background-color .1s ease-in-out, color .1s ease-in-out'
     },
     liNote: {
@@ -108,7 +108,7 @@ const styles = {
         fontWeight: '400',
         whiteSpace: 'nowrap',
         overflowX: 'hidden',
-        oTextOverflow: 'ellipsis',
+        OTextOverflow: 'ellipsis',
         textOverflow: 'ellipsis'
     },
     noteBody: {
