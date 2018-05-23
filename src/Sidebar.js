@@ -4,48 +4,67 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-const Sidebar = () => {
-    return (
+class Sidebar extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            newIconHovered: false,
+        }
+    }
 
-        <nav
-            className="Sidebar"
-            style={styles.sidebar}
-        >
-            
-            <div
-                className="logo"
-                style={styles.logo}
+    handleMouseEnter() {
+        this.setState({ newIconHovered: true })
+    }
+
+    handleMouseLeave() {
+        this.setState({ newIconHovered: false })
+    }
+    render() {
+        return (
+
+            <nav
+                className="Sidebar"
+                style={styles.sidebar}
             >
-                <img
-                    src={quill} alt="Noteherder"
-                    style={styles.logoImg}
-                />
-            </div>
-            <a className="new-note" href="/notes" style={styles.newNote} 
-                onMouseEnter={invisible} onMouseLeave={visible}>
-                <img
-                    name="initPhoto"
-                    src={newHover} alt="New note"
-                    style={styles.aImg}                    
-                />
-                <img
-                    name="secondPhoto"
-                    className="outline" src={newIcon} alt="New note"
-                    style={styles.aImg}
-                    
-                />
-            </a>
-            <div
-                className="SignOut"
-                style={styles.signOut}
-            >
-                <button style={{...styles.button, ...styles.signOutButton}}>
-                    <i className="fa fa-sign-out" style={styles.iFa}></i>
-                </button>
-            </div>
-           
-        </nav>
-    )
+
+                <div
+                    className="logo"
+                    style={styles.logo}
+                >
+                    <img
+                        src={quill} alt="Noteherder"
+                        style={styles.logoImg}
+                    />
+                </div>
+                <a className="new-note" href="/notes" style={styles.newNote}
+                    onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+                    <img
+                        name="initPhoto"
+                        src={newHover} alt="New note"
+                        style={styles.aImg}
+                    />
+                    <img
+                        name="secondPhoto"
+                        className="outline" src={newIcon} alt="New note"
+                        style={{
+                            ...styles.aImg,
+                            opacity: this.state.newIconHovered ? 0 : 1
+                        }}
+
+                    />
+                </a>
+                <div
+                    className="SignOut"
+                    style={styles.signOut}
+                >
+                    <button style={{ ...styles.button, ...styles.signOutButton }}>
+                        <i className="fa fa-sign-out" style={styles.iFa}></i>
+                    </button>
+                </div>
+
+            </nav>
+        )
+    }
 }
 
 function invisible() {
