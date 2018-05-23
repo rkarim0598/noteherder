@@ -39,7 +39,7 @@ const Sidebar = () => {
                 className="SignOut"
                 style={styles.signOut}
             >
-                <button style={styles.button}>
+                <button style={{...styles.button, ...styles.signOutButton}}>
                     <i className="fa fa-sign-out" style={styles.iFa}></i>
                 </button>
             </div>
@@ -102,6 +102,9 @@ const styles = {
     hover: {
         ...this.aImg,
         opacity: '0'
+    },
+    signOutButton: {
+        outline: 'none'
     }
 }
 export default Sidebar
