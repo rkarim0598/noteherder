@@ -40,6 +40,16 @@ class Main extends Component {
         this.setCurrentNote(this.blankNote())
     }
 
+    saveNote = (note) => {
+        const notes = [...this.state.notes]
+
+        const i = notes.findIndex(currentNote => currentNote.id === note.id)
+        notes[i] = note
+
+        this.setState({ notes })
+        this.setCurrentNote(note)
+    }
+
     render() {
         return (
             <div
@@ -48,7 +58,7 @@ class Main extends Component {
             >
                 <Sidebar resetCurrentNote={this.resetCurrentNote}/>
                 <NoteList notes={this.state.notes}
-                          setCurrentNote={this.setCurrentNote}
+                          saveNote={this.setCurrentNote}
                 />
                 <NoteForm currentNote={this.state.currentNote}/>
             </div>
