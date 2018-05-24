@@ -5,15 +5,18 @@ import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
 class Main extends Component {
+
     constructor() {
+        localStorage.removeItem("notes")
         super()
         this.state = {
             currentNote: this.blankNote(),
-            notes: JSON.parse(localStorage.getItem("notes"))
+            notes: JSON.parse(localStorage.getItem("notes")) === null ? [] : JSON.parse(localStorage.getItem("notes"))
         }
         // if (localStorage.getItem("notes")) {
         //     this.setState({ notes: JSON.parse(localStorage.getItem("notes"))})
         // }
+        
     }
 
     blankNote = () => {
