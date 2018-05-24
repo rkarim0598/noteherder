@@ -23,7 +23,6 @@ class Main extends Component {
 
     setCurrentNote = (note) => {
         this.setState({ currentNote: note })
-        console.log(this.state)
     }
 
     resetCurrentNote = () => {
