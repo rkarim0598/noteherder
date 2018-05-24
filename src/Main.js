@@ -23,10 +23,12 @@ class Main extends Component {
 
     setCurrentNote = (note) => {
         this.setState({ currentNote: note })
+        console.log(this.state)
     }
 
     resetCurrentNote = () => {
         this.setCurrentNote(this.blankNote())
+        
     }
 
     saveNote = (note) => {
@@ -40,6 +42,13 @@ class Main extends Component {
             notes.push(note)
         }
         this.setState({ notes, currentNote: note })
+    }
+
+    deleteNote = () => {
+        const notes = [...this.state.notes]
+        notes.splice(notes.indexOf(this.state.currentNote), 1)
+        this.setState({ notes })
+        this.resetCurrentNote()
     }
 
     render() {
@@ -56,6 +65,7 @@ class Main extends Component {
                 <NoteForm
                     currentNote={this.state.currentNote}
                     saveNote={this.saveNote}
+                    deleteNote={this.deleteNote}
                 />
             </div>
         )
