@@ -68,7 +68,7 @@ class Main extends Component {
         const notes = [...this.state.notes]
         notes.splice(notes.indexOf(this.state.currentNote), 1)
         this.setState({ notes })
-        localStorage.setItem("notes", JSON.stringify(notes))
+        // localStorage.setItem("notes", JSON.stringify(notes))
         this.resetCurrentNote()
     }
 
