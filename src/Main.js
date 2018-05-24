@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
-
+import base from './rebase'
 class Main extends Component {
 
     constructor() {
@@ -19,6 +19,15 @@ class Main extends Component {
         
     }
 
+    init() {
+        this.ref = base.syncState('https://note-keeper-b8e53.firebaseio.com/', {
+            context: this,
+            asArray: true,
+            state: 'notes'
+        })
+
+
+    }
     blankNote = () => {
         return {
             id: null,

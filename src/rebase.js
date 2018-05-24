@@ -1,15 +1,18 @@
-import Rebase from 're-base';
-import firebase from 'firebase/app';
-import 'firebase/database';
+import Rebase from 're-base'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
-var app = firebase.initializeApp({
-  apiKey: 'AIzaSyCETlSYkOH6Cut5Ii31THM3j5iOiHLz89Q',
-  authDomain: 'qwales1-test-fa2c0.firebaseapp.com',
-  databaseURL: 'https://qwales1-test-fa2c0.firebaseio.com',
-  projectId: 'qwales1-test-fa2c0'
-});
+var app = {
+    apiKey: "AIzaSyAh-rT7wUtOOUUbw6fozxj7bZdRCy4TmPg",
+    authDomain: "note-keeper-b8e53.firebaseapp.com",
+    databaseURL: "https://note-keeper-b8e53.firebaseio.com",
+    projectId: "note-keeper-b8e53",
+    // storageBucket: "note-keeper-b8e53.appspot.com",
+    // messagingSenderId: "615843625551"
+  };
+//   firebase.initializeApp(config);
 
-var db = firebase.database(app);
-var base = Rebase.createClass(db);
+var db = firebase.database(app)
+var base = Rebase.createClass(db)
 
-export default base;
+export default base
