@@ -3,18 +3,35 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './Main'
 import SignIn from './SignIn'
+import { auth } from './rebase'
 
 class App extends Component {
   state = {
     uid: null,
   }
 
+  componentWillMount() {
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          this.handleAuth()
+        } else {
+          this.handleUnauth()
+        }
+      }
+    )
+  }
+
   handleAuth = () => {
     this.setState({uid: 'rkarim0589'})
   }
 
+  handleUnauth = () => {
+    this.setState({ uid: null })
+  }
+
   signOut = () => {
-    this.setState({uid: null})
+    auth.signOut()
   }
 
   signedIn = () => {
@@ -29,7 +46,7 @@ class App extends Component {
           : <SignIn handleAuth={this.handleAuth}/>
         }
       </div>
-    );
+    )
   }
 }
 
