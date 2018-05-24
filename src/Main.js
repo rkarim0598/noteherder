@@ -66,6 +66,7 @@ class Main extends Component {
 
     deleteNote = () => {
         const notes = [...this.state.notes]
+        
         notes.splice(notes.indexOf(this.state.currentNote), 1)
         this.setState({ notes })
         // localStorage.setItem("notes", JSON.stringify(notes))
