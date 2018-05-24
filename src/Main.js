@@ -11,7 +11,8 @@ class Main extends Component {
         super()
         this.state = {
             currentNote: this.blankNote(),
-            notes: JSON.parse(localStorage.getItem("notes")) === null ? [] : JSON.parse(localStorage.getItem("notes"))
+            notes: []
+            // notes: JSON.parse(localStorage.getItem("notes")) === null ? [] : JSON.parse(localStorage.getItem("notes"))
         }
         // if (localStorage.getItem("notes")) {
         //     this.setState({ notes: JSON.parse(localStorage.getItem("notes"))})
@@ -20,13 +21,17 @@ class Main extends Component {
     }
 
     init() {
-        this.ref = base.syncState('https://note-keeper-b8e53.firebaseio.com/', {
+        this.ref = base.syncState('notekeeper/', {
             context: this,
             asArray: true,
             state: 'notes'
         })
 
 
+    }
+
+    componentDidMount() {
+        this.init() 
     }
     blankNote = () => {
         return {
