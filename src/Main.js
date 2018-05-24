@@ -9,8 +9,11 @@ class Main extends Component {
         super()
         this.state = {
             currentNote: this.blankNote(),
-            notes: [],
+            notes: JSON.parse(localStorage.getItem("notes"))
         }
+        // if (localStorage.getItem("notes")) {
+        //     this.setState({ notes: JSON.parse(localStorage.getItem("notes"))})
+        // }
     }
 
     blankNote = () => {
@@ -41,12 +44,14 @@ class Main extends Component {
             notes.push(note)
         }
         this.setState({ notes, currentNote: note })
+        localStorage.setItem("notes", JSON.stringify(this.state.notes))
     }
 
     deleteNote = () => {
         const notes = [...this.state.notes]
         notes.splice(notes.indexOf(this.state.currentNote), 1)
         this.setState({ notes })
+        localStorage.setItem("notes", JSON.stringify(notes))
         this.resetCurrentNote()
     }
 
