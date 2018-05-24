@@ -33,6 +33,7 @@ class Main extends Component {
     componentDidMount() {
         this.init() 
     }
+
     blankNote = () => {
         return {
             id: null,
@@ -79,7 +80,10 @@ class Main extends Component {
                 className="Main"
                 style={style}
             >
-                <Sidebar resetCurrentNote={this.resetCurrentNote} />
+                <Sidebar 
+                    resetCurrentNote={this.resetCurrentNote}
+                    signOut={this.props.signOut}
+                />
                 <NoteList
                     notes={this.state.notes}
                     setCurrentNote={this.setCurrentNote}

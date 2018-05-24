@@ -2,22 +2,32 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Main from './Main'
+import SignIn from './SignIn'
 
 class App extends Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     titles: ['Kohlrabi welsh', 'Dandelion cucumber', 'Prairie turnip' ],
-  //     notes: ['Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.',
-  //             'Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.',
-  //             'Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.'
-  //            ]
-  //   }
-  // }
+  state = {
+    uid: null,
+  }
+
+  handleAuth = () => {
+    this.setState({uid: 'rkarim0589'})
+  }
+
+  signOut = () => {
+    this.setState({uid: null})
+  }
+
+  signedIn = () => {
+    return this.state.uid
+  }
+
   render() {
     return (
       <div className="App">
-        <Main />
+        {this.signedIn() 
+          ? <Main signOut={this.signOut}/>  
+          : <SignIn handleAuth={this.handleAuth}/>
+        }
       </div>
     );
   }
