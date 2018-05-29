@@ -7,7 +7,7 @@ import base from './rebase'
 class Main extends Component {
 
     constructor() {
-        localStorage.removeItem("notes")
+        // localStorage.removeItem("notes")
         super()
         this.state = {
             currentNote: this.blankNote(),
@@ -21,7 +21,8 @@ class Main extends Component {
     }
 
     init() {
-        this.ref = base.syncState('notekeeper/', {
+        debugger
+        this.ref = base.syncState(this.props.user.uid + '/', {
             context: this,
             asArray: true,
             state: 'notes'

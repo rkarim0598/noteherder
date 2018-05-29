@@ -18,17 +18,22 @@ class App extends Component {
         } else {
           this.handleUnauth()
         }
-
-        if (JSON.parse(localStorage.getItem('uid'))) {
-          this.setState(JSON.parse(localStorage.getItem('uid')))
+        const curr = JSON.parse(localStorage.getItem('uid'))
+        if (curr) {
+          this.setState({ uid: curr })
         }
       }
     )
   }
 
   handleAuth = () => {
-    this.setState({uid: 'rkarim0589'})
+
+    console.log('hello')
+    this.setState({ uid: auth.currentUser.uid })
     localStorage.setItem('uid', JSON.stringify(this.state.uid))
+    console.log(this.state.uid)
+
+
   }
 
   handleUnauth = () => {
@@ -44,15 +49,21 @@ class App extends Component {
   }
 
   signedIn = () => {
-    return this.state.uid || JSON.parse(localStorage.getItem('uid'))
+    if (this.state.uid) {
+      return this.state.uid
+    } else if (JSON.parse(localStorage.getItem('uid'))) {
+      return JSON.parse(localStorage.getItem('uid'))
+    } else {
+      return null
+    }
   }
 
   render() {
     return (
       <div className="App">
-        {this.signedIn() 
-          ? <Main signOut={this.signOut}/>  
-          : <SignIn handleAuth={this.handleAuth}/>
+        {this.signedIn()
+          ? <Main signOut={this.signOut} user={this.state}/>
+          : <SignIn handleAuth={this.handleAuth} />
         }
       </div>
     )
