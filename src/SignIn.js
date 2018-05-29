@@ -8,6 +8,7 @@ import { auth, githubProvider, googleProvider } from './rebase'
 const SignIn = () => {
     const authenticate = (provider) => {
         auth.signInWithPopup(provider)
+        
     }
     return (
         <div className="SignIn">
