@@ -22,7 +22,7 @@ class Main extends Component {
 
     init() {
         debugger
-        this.ref = base.syncState(this.props.user.uid + '/', {
+        this.ref = base.syncState(`notes/${this.props.user.uid}`, {
             context: this,
             asArray: true,
             state: 'notes'
