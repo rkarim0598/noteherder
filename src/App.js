@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-import './App.css';
+import './App.css'
+import { auth } from './rebase'
 import Main from './Main'
 import SignIn from './SignIn'
-import { auth } from './rebase'
 
 class App extends Component {
   state = {
@@ -11,63 +12,80 @@ class App extends Component {
   }
 
   componentWillMount() {
+    const uid = localStorage.getItem('uid')
+    if (uid) {
+      this.setState({ uid })
+    }
     auth.onAuthStateChanged(
       (user) => {
         if (user) {
-          this.handleAuth()
+          this.handleAuth(user)
         } else {
           this.handleUnauth()
-        }
-        const curr = JSON.parse(localStorage.getItem('uid'))
-        if (curr) {
-          this.setState({ uid: curr })
         }
       }
     )
   }
 
-  handleAuth = () => {
-
-    console.log('hello')
-    this.setState({ uid: auth.currentUser.uid })
-    localStorage.setItem('uid', JSON.stringify(this.state.uid))
-    console.log(this.state.uid)
-
-
+  handleAuth = (user) => {
+    this.setState({ uid: user.uid })
+    localStorage.setItem('uid', user.uid)
   }
 
   handleUnauth = () => {
     this.setState({ uid: null })
     localStorage.removeItem('uid')
-
   }
 
   signOut = () => {
     auth.signOut()
-    localStorage.removeItem('uid')
-
   }
 
   signedIn = () => {
-    if (this.state.uid) {
-      return this.state.uid
-    } else if (JSON.parse(localStorage.getItem('uid'))) {
-      return JSON.parse(localStorage.getItem('uid'))
-    } else {
-      return null
-    }
+    return this.state.uid
   }
 
   render() {
     return (
       <div className="App">
-        {this.signedIn()
-          ? <Main signOut={this.signOut} user={this.state}/>
-          : <SignIn handleAuth={this.handleAuth} />
-        }
+        <Switch>
+          <Route
+            path="/sign-in"
+            render={navProps => (
+              this.signedIn()
+                ? <Redirect to="/notes" />
+                : <SignIn {...navProps} />
+            )}
+          />
+          <Route
+            path="/notes"
+            render={navProps => (
+              this.signedIn()
+                ? <Main
+                    signOut={this.signOut}
+                    uid={this.state.uid}
+                    {...navProps}
+                  />
+                : <Redirect to="/sign-in" />
+            )}
+          />
+          <Route
+            render={() => (
+              this.signedIn()
+                ? <Redirect to="/notes" />
+                : <Redirect to="/sign-in" />
+            )}
+          />
+        </Switch>
+        {/*
+          this.signedIn()
+            ? <Main signOut={this.signOut} uid={this.state.uid} />
+            : <SignIn />
+        */}
+
       </div>
     )
   }
 }
 
-export default App;
+export default App
