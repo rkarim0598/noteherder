@@ -31,8 +31,17 @@ class NoteForm extends Component {
   }
 
   handleChanges = (ev) => {
-    const note = {...this.state.note}
+    const note = { ...this.state.note }
     note[ev.target.name] = ev.target.value
+    // debugger
+    var date = new Date()
+    var datetime = date.getDate() + "/"
+      + (date.getMonth() + 1) + "/"
+      + date.getFullYear() + " @ "
+      + date.getHours() + ":"
+      + date.getMinutes() + ":"
+      + date.getSeconds()
+    
     this.props.saveNote(note)
     this.setState({ note })
   }

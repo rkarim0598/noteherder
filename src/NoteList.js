@@ -12,6 +12,7 @@ const NoteList = ({ notes }) => {
         { notes.map(note => (
           <Note
             key={note.id}
+            updated={note.updated}
             note={note}
           />
         ))}
