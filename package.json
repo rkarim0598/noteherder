@@ -2,7 +2,7 @@
   "name": "noteherder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://rkarim0598.github.io/noteherder/",
+  "homepage": "https://note-keeper-b8e53.firebaseapp.com/",
   "dependencies": {
     "aphrodite": "^2.2.1",
     "gh-pages": "^1.1.0",
